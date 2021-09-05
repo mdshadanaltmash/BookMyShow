@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for t in theatreDetails %}
+
+<h3>Movie: {{ t['Movie Name'] }}</h3>
+    <div>
+    <ul>
+        <li>  <h6> Theatre Name: {{ t['Name'] }}</h6></li>
+        <li>  <h6>Duration: {{ t['Movie Duration'] }} </h6></li>
+        <li>  <h6>Movie Timing: {{ t['Movie Timing'] }} </h6></li>
+        <li>  <h6>Total Seats: {{ t['Total Seats'] }}  </h6></li>
+        <li>  <h6>Seats Booked: {{ t['Seats Booked'] }}  </h6></li>
+        <li>  <h6>Seats Available: {{ t['Seats Available'] }}  </h6></li>
+        {% if t['Seats Available']>0 %}
+
+        <a class="btn btn-primary" href="{{ url_for('book',id=t['_id']) }}" color="white">Book Ticket </a>
+        
+           
+        {% else %}
+            <b>HOUSEFULL!!</b>
+        {% endif %}
+    </ul>
+</div> 
+    
+{% endfor %}
+
+{% endblock %}
+        
+    

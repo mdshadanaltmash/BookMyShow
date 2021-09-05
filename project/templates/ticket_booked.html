@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Congratulations!! Your Ticket has been Booked Successfully!!</h1>
+<div class="jumbotron">
+<h3>Your Ticket id is {{ id }}</h3>
+    <b>Person Name: {{ ticketDetails['person name'] }}</b><br>
+    <b>Theatre Name: {{ ticketDetails['theatre name'] }}</b><br>
+    <b>Movie Name: {{ ticketDetails['movie name'] }}</b><br>
+    <b>Movie Timing: {{ ticketDetails['movie timing'] }}</b><br>
+    <b>No of Person: {{ ticketDetails['person count'] }}</b><br>
+</div>
+
+<h4>Thank you for using BookMyShow</h4>
+
+{% endblock %}
+        
+    

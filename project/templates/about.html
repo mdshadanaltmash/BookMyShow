@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if allTickets %}
+           <h3>Hi {{current_user.name}}, You have {{allTicketsCounts}} Bookings so far.</h3>
+{% for t in allTickets %}
+
+    <div>
+    <ul>
+        <li>  <h6>Ticket ID: {{ t['_id'] }}  </h6></li>
+        <li>  <h6> Movie: {{ t['movie name'] }}</h6></li>
+        <li>  <h6> Theatre Name: {{ t['theatre name'] }}</h6></li>
+        <li>  <h6>Duration: {{ t['movie duration'] }} </h6></li>
+        <li>  <h6>Movie Timing: {{ t['movie timing'] }} </h6></li>
+        <li>  <h6>Total Person: {{ t['person count'] }}  </h6></li>
+        <li>  <h6>Email: {{ t['email'] }}  </h6></li>
+    </ul>
+    </div> 
+
+    {% endfor %}
+
+    {% else %}
+        <h3>Hi {{current_user.name}}, Sorry you Do not have any Bookings yet.</h3>
+    {% endif %}
+   
+{% endblock %}

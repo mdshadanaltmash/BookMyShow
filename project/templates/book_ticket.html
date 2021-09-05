@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<font 
+    color="red">
+    {{ message }}
+    </font>
+
+<h4>{{ theatreDetails['Name'] }}</h4>
+    <ul>
+        <li>  <h6>Movie Name: {{ theatreDetails['Movie Name'] }} </h6></li>
+        <li>  <h6>Duration: {{ theatreDetails['Movie Duration'] }} </h6></li>
+        <li>  <h6>Movie Timing: {{ theatreDetails['Movie Timing'] }} </h6></li>
+        <li>  <h6>Total Seats: {{ theatreDetails['Total Seats'] }}  </h6></li>
+        <li>  <h6>Seats Booked: {{ theatreDetails['Seats Booked'] }}  </h6></li>
+        <li>  <h6>Seats Available: {{ theatreDetails['Seats Available'] }}  </h6></li>
+        {% if theatreDetails['Seats Available']>0 %}
+
+
+        <div class="jumbotron">
+            {{ message }}
+            <form class="form-group" method="POST">
+               {{form.hidden_tag()}}
+                    <div class="form-group">
+                        {{ form.name.label(class="form-control-label")}}
+                        {{form.name(placeholder="Enter Name" ,class="form-control")}}
+                    </div>
+                    <div class="form-group">
+                        {{ form.ticket_count.label(class="form-control-label")}}
+                        {{form.ticket_count(placeholder="Enter No. of tickets" ,class="form-control")}}
+                    </div>
+                    <div class="form-group">
+                        {{form.book_ticket(class="btn btn-primary")}}
+                    </div>
+            </form>
+          </div>
+           
+        {% else %}
+            <b>HOUSEFULL!!</b>
+        {% endif %}
+    </ul>
+    
+
+{% endblock %}
+        
+    
