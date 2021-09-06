@@ -39,8 +39,10 @@ def login():
                 if next is None or next[0]=='/':
                     next=url_for('welcome_user')
                 return(redirect(next))
+            else:
+                msg='Invalid Username/Password'
+                redirect(url_for('login'))
         else:
-            flash('Invalid Username/Password')
             msg='Invalid Username/Password'
             redirect(url_for('login'))
     return render_template('login.html',form=form,msg=msg)
