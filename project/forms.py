@@ -31,6 +31,6 @@ class RegistrationForm(FlaskForm):
 
 class BookTicketForm(FlaskForm):
 
-    name=StringField('Name: ', validators=[DataRequired()])
-    ticket_count=IntegerField('No of Ticket: ',validators=[DataRequired()])
+    name=StringField('Name ', validators=[DataRequired()])
+    ticket_count=IntegerField('No of Ticket ',validators=[DataRequired()])
     book_ticket=SubmitField('Book Ticket')
