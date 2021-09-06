@@ -2,7 +2,13 @@
 
 {% block content %}
 
+{% if msg|length> 1 %}
+<div class="alert alert-danger" role="alert">
+  {{msg}}
+</div>
+{% endif %}
         <div class="jumbotron">
+          {{ msg }}
             <form class="form-group" method="POST">
               
               <div class="form-group">

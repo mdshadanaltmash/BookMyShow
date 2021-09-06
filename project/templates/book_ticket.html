@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<font 
-    color="red">
-    {{ message }}
-    </font>
+{% if msg|length> 1 %}
+<div class="alert alert-danger" role="alert">
+  {{msg}}
+</div>
+{% endif %}
 
 <h4>{{ theatreDetails['Name'] }}</h4>
     <ul>

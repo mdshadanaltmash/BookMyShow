@@ -7,17 +7,17 @@ from project.models import mongo
 
 class LoginForm(FlaskForm):
 
-    email=StringField('Email',validators=[DataRequired(),Email(message="Not a valid Email Format.")])
-    password=PasswordField('Password: ',validators=[DataRequired()])
+    email=StringField('Email ',validators=[DataRequired(),Email(message="Not a valid Email Format.")])
+    password=PasswordField('Password ',validators=[DataRequired()])
     submit=SubmitField('Log In!')
 
 class RegistrationForm(FlaskForm):
 
-    f_name=StringField('Full Name: ',validators=[DataRequired()])
-    email=StringField('Email:',validators=[DataRequired(),Email(message="Not a valid Email Format.")])
-    username=StringField('Username: ',validators=[DataRequired()])
-    password=PasswordField('Password: ',validators=[DataRequired(),EqualTo('pass_confirm')])
-    pass_confirm=PasswordField('Confirm Password: ',validators=[DataRequired()])
+    f_name=StringField('Full Name ',validators=[DataRequired()])
+    email=StringField('Email ',validators=[DataRequired(),Email(message="Not a valid Email Format.")])
+    username=StringField('Username ',validators=[DataRequired()])
+    password=PasswordField('Password ',validators=[DataRequired(),EqualTo('pass_confirm')])
+    pass_confirm=PasswordField('Confirm Password ',validators=[DataRequired()])
     submit=SubmitField('Register Me!')
 
     def validate_email(self,email):

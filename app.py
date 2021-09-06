@@ -26,21 +26,24 @@ def logout():
 @app.route('/login',methods=['GET','POST'])
 def login():
     form=LoginForm()
+    msg=''
     if form.validate_on_submit():
         user_info=project.models.UsersDB()
         user=user_info.getUser(email=form.email.data)
-        passInDb=user['password']
-        if user and user_info.checkPass(passInDb,paas=form.password.data):
-            login_user(project.models.User(user['Email'],user['Full Name'],user['username'],user['password']))
-            flash('You have been Logged In!')
-            next=request.args.get('next')
-            if next is None or next[0]=='/':
-                next=url_for('welcome_user')
-            return(redirect(next))
+        if user:
+            passInDb=user['password']
+            if user_info.checkPass(passInDb,paas=form.password.data):
+                login_user(project.models.User(user['Email'],user['Full Name'],user['username'],user['password']))
+                flash('You have been Logged In!')
+                next=request.args.get('next')
+                if next is None or next[0]=='/':
+                    next=url_for('welcome_user')
+                return(redirect(next))
         else:
-            flash('Incorrect Password')
+            flash('Invalid Username/Password')
+            msg='Invalid Username/Password'
             redirect(url_for('login'))
-    return render_template('login.html',form=form)
+    return render_template('login.html',form=form,msg=msg)
 
 @app.route('/register',methods=['GET','POST'])
 def register():
@@ -69,7 +72,7 @@ def theatres():
 @app.route('/book/<id>',methods=['GET','POST'])
 @login_required
 def book(id):
-    message=''
+    msg=''
     theatre=project.models.Theatre()
     theatreDetails=theatre.getTheatreDetails(id)
     seat_available=theatre.getAvailableSeats(id)
@@ -84,11 +87,11 @@ def book(id):
 
             return redirect(url_for('ticketConfirmation',id=ObjectId(ticketGenerated.inserted_id)))
         else:
-            message="Cannot book more than available "+str(seat_available)+" seats"
-            return redirect(url_for('book',id=id))
+            msg="Cannot book more than available "+str(seat_available)+" seats"
+            #return redirect(url_for('book',id=id))
 
 
-    return render_template('book_ticket.html',theatreDetails=theatreDetails,message=message,form=form,current_user=current_user)
+    return render_template('book_ticket.html',theatreDetails=theatreDetails,msg=msg,form=form,current_user=current_user)
 
 @app.route('/book/ticketconfirmation/<id>')
 @login_required

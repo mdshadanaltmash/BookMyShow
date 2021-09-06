@@ -5,17 +5,24 @@
            <h3>Hi {{current_user.name}}, You have {{allTicketsCounts}} Bookings so far.</h3>
 {% for t in allTickets %}
 
-    <div>
-    <ul>
-        <li>  <h6>Ticket ID: {{ t['_id'] }}  </h6></li>
-        <li>  <h6> Movie: {{ t['movie name'] }}</h6></li>
-        <li>  <h6> Theatre Name: {{ t['theatre name'] }}</h6></li>
-        <li>  <h6>Duration: {{ t['movie duration'] }} </h6></li>
-        <li>  <h6>Movie Timing: {{ t['movie timing'] }} </h6></li>
-        <li>  <h6>Total Person: {{ t['person count'] }}  </h6></li>
-        <li>  <h6>Email: {{ t['email'] }}  </h6></li>
-    </ul>
-    </div> 
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-primary text-white">
+        <h5>Ticket ID: {{ t['_id'] }}  </h5>
+    </div>
+    <div class="card-body" bgcolor='blue'>
+      <blockquote class="blockquote mb-0">
+        <ul>
+            <li>  <h6> Movie: {{ t['movie name'] }}</h6></li>
+            <li>  <h6> Theatre Name: {{ t['theatre name'] }}</h6></li>
+            <li>  <h6>Duration: {{ t['movie duration'] }} </h6></li>
+            <li>  <h6>Movie Timing: {{ t['movie timing'] }} </h6></li>
+            <li>  <h6>Total Person: {{ t['person count'] }}  </h6></li>
+            <li>  <h6>Email: {{ t['email'] }}  </h6></li>
+
+        </ul>
+      </blockquote>
+    </div>
+  </div><br>
 
     {% endfor %}
 
